@@ -21,6 +21,7 @@ void test_sort(const std::string msg, std::vector<int> want,
         std::cout << ", got";
         pp(sample);
         std::cout << std::endl;
+        exit(1);
     }
 }
 

@@ -6,13 +6,16 @@
 
 void test_normal();
 
-int main() { test_normal(); }
+int main() {
+    test_normal();
+    return 0;
+}
 
 void sleep_sort(std::vector<int> &v) {
     std::vector<int> r;
-    std::vector<std::thread> thread_group;
+    std::vector<std::thread> ths;
     for (auto i : v) {
-        thread_group.push_back(std::thread(
+        ths.push_back(std::thread(
             [&](int s) {
                 std::this_thread::sleep_for(std::chrono::seconds(s));
                 r.push_back(s);
@@ -20,9 +23,8 @@ void sleep_sort(std::vector<int> &v) {
             i));
     }
 
-    // for(auto t : thread_group) {
-    for (size_t i = 0; i < thread_group.size(); i++) {
-        thread_group.at(i).join();
+    for(auto &t : ths) {
+        t.join();
     }
 
     v = r;
