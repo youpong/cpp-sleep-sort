@@ -14,10 +14,9 @@ check: $(TARGET)
 clean:
 	rm -f $(TARGET) $(OBJS)
 format:
-	$(FORMATTER) $(SRCS) util.h sleep_sort.h
+	$(FORMATTER) $(SRCS) sleep_sort.h
 
 $(TARGET): $(OBJS)
 	$(CXX) -o $@ $(OBJS) $(LIBS)
 
-sleep_sort.o: util.h
 $(OBJS): sleep_sort.h

@@ -1,11 +1,8 @@
 #include "sleep_sort.h"
-#include "util.h"
 #include <algorithm>
 #include <chrono>
-#include <thread>
 #include <mutex>
-
-void test_normal();
+#include <thread>
 
 int main() {
     test_normal();
@@ -27,7 +24,7 @@ void sleep_sort(std::vector<int> &v) {
             i));
     }
 
-    for(auto &t : ths) {
+    for (auto &t : ths) {
         t.join();
     }
 
