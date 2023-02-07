@@ -1,8 +1,13 @@
 #include "util.h"
+#include "sleep_sort.h"
 
-int main() {}
+void test_normal();
 
-int *sleep_sort(int *a) {
-    return a;
+int main() {
+    test_normal();
+}
+
+void sleep_sort(std::vector<int> v) {
+    // TODO: implement
 }
 
