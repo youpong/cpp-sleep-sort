@@ -2,7 +2,8 @@ TARGET := sleep_sort
 SRCS   := $(wildcard *.cpp)
 OBJS    = $(SRCS:.cpp=.o)
 
-CXX       ?= clang++-15
+CXX       := clang++-15
+CXXFLAGS  := -std=c++2a -Wall -Wextra -Wpedantic
 FORMATTER ?= clang-format-14 -i
 
 .PHONY: all clean format
