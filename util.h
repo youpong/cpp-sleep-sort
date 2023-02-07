@@ -15,16 +15,16 @@ using namespace std::string_literals;
 template <typename T>
 void expect1(const T &want, const T &got, const std::string &msg,
              const char *file, int line) {
-  if (want == got)
-    return;
+    if (want == got)
+        return;
 
-  if (msg.length() != 0)
-    std::cout << file << ":"s << line << ": Error: "s << msg << " want ("s
-              << want << "), but got ("s << got << ")"s << std::endl;
-  else
-    std::cout << file << ":"s << line << ": Error: want ("s << want
-              << "), but got ("s << got << ")"s << std::endl;
+    if (msg.length() != 0)
+        std::cout << file << ":"s << line << ": Error: "s << msg << " want ("s
+                  << want << "), but got ("s << got << ")"s << std::endl;
+    else
+        std::cout << file << ":"s << line << ": Error: want ("s << want
+                  << "), but got ("s << got << ")"s << std::endl;
 
-  exit(1);
+    exit(1);
 }
 #define expect(want, got, msg) expect1(want, got, msg, __FILE__, __LINE__)
