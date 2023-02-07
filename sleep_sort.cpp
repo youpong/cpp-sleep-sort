@@ -4,11 +4,6 @@
 #include <mutex>
 #include <thread>
 
-int main() {
-    test_normal();
-    return 0;
-}
-
 void sleep_sort(std::vector<int> &v) {
     std::vector<int> r;
     std::vector<std::thread> ths;
