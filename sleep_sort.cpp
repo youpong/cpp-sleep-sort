@@ -1,5 +1,4 @@
 #include "sleep_sort.h"
-#include <algorithm>
 #include <chrono>
 #include <mutex>
 #include <thread>
@@ -20,7 +19,8 @@ void sleep_sort(std::vector<int> &v) {
     }
 
     for (auto &t : ths) {
-        t.join();
+        if (t.joinable())
+            t.join();
     }
 
     v = r;

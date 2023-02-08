@@ -1,5 +1,4 @@
 #include "sleep_sort.h"
-//#include "util.h"
 
 static void test_sort(const std::string msg, std::vector<int> want,
                       std::vector<int> sample) {
