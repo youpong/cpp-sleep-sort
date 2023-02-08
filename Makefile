@@ -10,7 +10,7 @@ FORMATTER ?= clang-format-15 -i
 all: $(TARGET)
 check: $(TARGET)
 	./$(TARGET)
-	@echo "All Test passed"
+	@echo "All Tests passed"
 clean:
 	rm -f $(TARGET) $(OBJS)
 format:
