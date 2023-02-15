@@ -6,6 +6,7 @@ The C++20 implementation of Sleep Sort.
 
 The following versions or newer required.
 
+* CMake 3.22
 * GNU Make-4.3
 * g++-11.3.0 or clang++-15.0.6
 * clang-format-15.0.6
@@ -13,7 +14,10 @@ The following versions or newer required.
 ## How to use
 
 ```
-$ make all check
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
 ```
 
 ## References
