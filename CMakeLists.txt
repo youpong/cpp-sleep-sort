@@ -10,11 +10,15 @@ target_compile_options(sleep_sort PRIVATE
   "$<BUILD_INTERFACE:-Wall;-Wextra;-Wpedantic>"
 )
 
+enable_testing()
+
+add_test(NAME Check COMMAND sleep_sort)
+
 # DONE
 # make all
 # make clean
+# make check
 
 # NOT DONE
-# make check
 # make format
 # clang

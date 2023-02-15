@@ -17,7 +17,8 @@ The following versions or newer required.
 $ mkdir build
 $ cd build
 $ cmake ..
-$ cmake --build .
+$ cmake --build . -j
+$ ctest
 ```
 
 ## References
