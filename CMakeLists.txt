@@ -13,12 +13,3 @@ target_compile_options(sleep_sort PRIVATE
 enable_testing()
 
 add_test(NAME Check COMMAND sleep_sort)
-
-# DONE
-# make all
-# make clean
-# make check
-
-# NOT DONE
-# make format
-# clang
