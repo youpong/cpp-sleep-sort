@@ -10,6 +10,11 @@ target_compile_options(sleep_sort PRIVATE
   "$<BUILD_INTERFACE:-Wall;-Wextra;-Wpedantic>"
 )
 
-enable_testing()
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+include(ClangFormat)
+set(CLANGFORMAT_EXECUTABLE "clang-format-15")
+target_clangformat_setup(sleep_sort)
 
+enable_testing()
 add_test(NAME Check COMMAND sleep_sort)
+
