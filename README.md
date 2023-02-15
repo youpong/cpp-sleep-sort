@@ -14,7 +14,6 @@ The following versions or newer required.
 ## Usage
 
 1. Generate the build system:
-
 ```bash
 $ mkdir build
 $ cd build
@@ -30,6 +29,24 @@ $ ctest
 3. Format sources anytime using `clangformat` target:
 ```bash
 $ cmake --build . --target clangformat
+```
+
+## Docker
+
+1. Build Docker image:
+```bash
+$ docker build -t sleep-sort .
+```
+
+2. Run Docker container:
+```bash
+$ docker run --rm -it -v $PWD:/sleep-sort -w /sleep-sort sleep-sort
+```
+
+3. Set environment variables:
+```bash
+$ export CC=clang-15
+$ export CXX=clang++-15
 ```
 
 ## References
