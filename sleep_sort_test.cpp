@@ -1,24 +1,31 @@
 #include "sleep_sort.h"
+#include <thread>
 
 struct Unit {
     std::string msg;
     std::vector<int> want;
     std::vector<int> sample;
 };
-static void test_sort(Unit &u);
+static void test_sort(Unit u);
 
 void test_normal() {
     std::vector<Unit> tests = {
-        Unit{"one element"s, {1}, {1}}, Unit{"two elements"s, {1, 2}, {2, 1}},
+        Unit{"zero element"s, {}, {}}, Unit{"one element"s, {1}, {1}},
         Unit{"five elements"s, {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
         Unit{"duplicated values"s, {1, 1, 2, 2}, {2, 1, 1, 2}}};
 
+    std::vector<std::thread> ths;
     for (auto u : tests) {
-        test_sort(u);
+        ths.push_back(std::thread{[=] { test_sort(u); }});
+    }
+
+    for (auto &t : ths) {
+        if (t.joinable())
+            t.join();
     }
 }
 
-static void test_sort(Unit &u) {
+static void test_sort(Unit u) {
     auto pp = [](std::vector<int> v) {
         std::cout << "["s;
         auto delim = ""s;
