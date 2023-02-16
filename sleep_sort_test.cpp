@@ -1,5 +1,6 @@
 #include "sleep_sort.h"
 #include <thread>
+#include <mutex>
 
 struct Unit {
     std::string msg;
@@ -7,6 +8,7 @@ struct Unit {
     std::vector<int> sample;
 };
 static void test_sort(Unit &u);
+std::mutex print_mtx;
 
 void test_normal() {
     std::vector<Unit> tests = {
@@ -39,6 +41,7 @@ static void test_sort(Unit &u) {
     sleep_sort(u.sample);
 
     if (u.want != u.sample) {
+        std::lock_guard<std::mutex> lock(print_mtx);
         std::cout << u.msg << ": want"s;
         pp(u.want);
         std::cout << ", got"s;

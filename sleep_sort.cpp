@@ -11,9 +11,8 @@ void sleep_sort(std::vector<int> &v) {
         ths.push_back(std::thread(
             [&](int s) {
                 std::this_thread::sleep_for(std::chrono::seconds(s));
-                mtx.lock();
+                std::lock_guard<std::mutex> lock(mtx);
                 r.push_back(s);
-                mtx.unlock();
             },
             i));
     }
