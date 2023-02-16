@@ -4,23 +4,21 @@
 #include <thread>
 
 void sleep_sort(std::vector<int> &v) {
-    std::vector<int> r;
     std::vector<std::thread> ths;
     std::mutex mtx;
-    for (auto i : v) {
-        ths.push_back(std::thread(
-            [&](int s) {
-                std::this_thread::sleep_for(std::chrono::seconds(s));
-                std::lock_guard<std::mutex> lock(mtx);
-                r.push_back(s);
-            },
-            i));
+    std::vector<int> r = v;
+
+    v.clear();
+    for (auto &e : r) {
+        ths.push_back(std::thread([&] {
+            std::this_thread::sleep_for(std::chrono::seconds(e));
+            std::lock_guard<std::mutex> lock(mtx);
+            v.push_back(e);
+        }));
     }
 
     for (auto &t : ths) {
         if (t.joinable())
             t.join();
     }
-
-    v = r;
 }

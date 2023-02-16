@@ -1,6 +1,6 @@
 #include "sleep_sort.h"
-#include <thread>
 #include <mutex>
+#include <thread>
 
 struct Unit {
     std::string msg;
