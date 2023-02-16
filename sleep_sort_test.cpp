@@ -6,7 +6,7 @@ struct Unit {
     std::vector<int> want;
     std::vector<int> sample;
 };
-static void test_sort(Unit u);
+static void test_sort(Unit &u);
 
 void test_normal() {
     std::vector<Unit> tests = {
@@ -15,8 +15,8 @@ void test_normal() {
         Unit{"duplicated values"s, {1, 1, 2, 2}, {2, 1, 1, 2}}};
 
     std::vector<std::thread> ths;
-    for (auto u : tests) {
-        ths.push_back(std::thread{[=] { test_sort(u); }});
+    for (auto &u : tests) {
+        ths.push_back(std::thread{[&] { test_sort(u); }});
     }
 
     for (auto &t : ths) {
@@ -25,7 +25,7 @@ void test_normal() {
     }
 }
 
-static void test_sort(Unit u) {
+static void test_sort(Unit &u) {
     auto pp = [](std::vector<int> v) {
         std::cout << "["s;
         auto delim = ""s;
