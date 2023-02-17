@@ -13,14 +13,13 @@ The following versions or newer required.
 
 ## Usage
 
-1. Generate the build system:
+1. Generate the build system and navigate to the directory:
 ```bash
-$ mkdir build
+$ cmake -Bbuild
 $ cd build
-$ cmake ..
 ```
 
-2. test:
+2. build and test:
 ```bash
 $ cmake --build . -j
 $ ctest
