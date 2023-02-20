@@ -12,9 +12,11 @@ std::mutex print_mtx;
 
 void test_normal() {
     std::vector<Unit> tests = {
-        Unit{"zero element"s, {}, {}}, Unit{"one element"s, {1}, {1}},
-        Unit{"five elements"s, {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
-        Unit{"duplicated values"s, {1, 1, 2, 2}, {2, 1, 1, 2}}};
+        {"zero element"s,      {},              {}             },
+        {"one element"s,       {1},             {1}            },
+        {"five elements"s,     {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
+        {"duplicated values"s, {1, 1, 2, 2},    {2, 1, 1, 2}   }
+    };
 
     std::vector<std::thread> ths;
     for (auto &u : tests) {
