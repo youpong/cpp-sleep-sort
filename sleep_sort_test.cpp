@@ -1,5 +1,6 @@
 #include "sleep_sort.h"
 #include <mutex>
+#include <string>
 #include <thread>
 
 struct Unit {
@@ -19,36 +20,34 @@ void test_normal() {
     };
 
     std::vector<std::thread> ths;
-    for (auto &u : tests) {
-        ths.push_back(std::thread{[&] { test_sort(u); }});
+    for (auto &t : tests) {
+        ths.push_back(std::thread{[&] { test_sort(t); }});
     }
 
     for (auto &t : ths) {
-        if (t.joinable())
+        if (t.joinable()) {
             t.join();
+        }
     }
 }
 
 static void test_sort(Unit &u) {
     auto pp = [](std::vector<int> v) {
-        std::cout << "["s;
+        auto result = "["s;
         auto delim = ""s;
         for (auto i : v) {
-            std::cout << delim << i;
-            delim = ", ";
+            result += delim + std::to_string(i);
+            delim = ", "s;
         }
-        std::cout << "]"s;
+        return result + "]"s;
     };
 
     sleep_sort(u.sample);
 
     if (u.want != u.sample) {
         std::lock_guard<std::mutex> lock(print_mtx);
-        std::cout << u.msg << ": want"s;
-        pp(u.want);
-        std::cout << ", got"s;
-        pp(u.sample);
-        std::cout << std::endl;
+        std::cout << u.msg << ": want"s << pp(u.want)
+                  << ", got"s << pp(u.sample) << std::endl;
         exit(1);
     }
 }
