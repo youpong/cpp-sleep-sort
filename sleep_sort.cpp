@@ -18,7 +18,8 @@ void sleep_sort(std::vector<int> &v) {
     }
 
     for (auto &t : ths) {
-        if (t.joinable())
+        if (t.joinable()) {
             t.join();
+        }
     }
 }
