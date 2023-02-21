@@ -50,7 +50,7 @@ $ export CXX=clang++-15
 
 ## References
 
-* [Go implementation](https://github.com/youpong/sleep-sort)
+* [Go implementation](https://github.com/youpong/sleep-sort) of sleep sort.
 * zemasoft, [ClangFormat.cmake module](https://github.com/zemasoft/clangformat-cmake)
 
 ## Lisence
