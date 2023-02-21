@@ -4,7 +4,7 @@
 #include <string>
 #include <thread>
 
-struct Unit {
+struct Test {
     std::string msg;
     std::vector<int> want;
     std::vector<int> sample;
@@ -12,7 +12,7 @@ struct Unit {
 
 static void test_normal();
 static void test_negative();
-static void test_sort(Unit &u);
+static void test_sort(Test &u);
 
 std::mutex print_mtx;
 
@@ -22,13 +22,12 @@ void test_sleep_sort() {
 }
 
 static void test_normal() {
-    std::vector<Unit> tests = {
+    std::vector<Test> tests = {
         {"zero element"s,      {},              {}             },
         {"one element"s,       {1},             {1}            },
         {"five elements"s,     {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
         {"duplicated values"s, {1, 1, 2, 2},    {2, 1, 1, 2}   },
-        {"zero 1"s,            {0},             {0}            },
-        {"zero 2"s,            {0, 1, 2, 3, 4}, {4, 3, 1, 2, 0}},
+        {"zero"s,              {0, 1, 2, 3, 4}, {4, 3, 1, 2, 0}},
     };
 
     std::vector<std::thread> ths;
@@ -44,7 +43,7 @@ static void test_normal() {
 }
 
 static void test_negative() {
-    auto t = Unit{"negative"s, {}, {-1}};
+    auto t = Test{"negative"s, {}, {-1}};
 
     int checkPoint = 0;
     try {
@@ -56,7 +55,7 @@ static void test_negative() {
     expect(0b01, checkPoint, "");
 }
 
-static void test_sort(Unit &u) {
+static void test_sort(Test &u) {
     auto pp = [](std::vector<int> v) {
         auto result = "["s;
         auto delim = ""s;
