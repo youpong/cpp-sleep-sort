@@ -2,6 +2,6 @@
 BasedOnStyle: LLVM
 AllowShortFunctionsOnASingleLine: true
 AlwaysBreakTemplateDeclarations: Yes
-ColumnLimit:    80
+ColumnLimit:    90
 IndentWidth:     4
 AlignArrayOfStructures: Left

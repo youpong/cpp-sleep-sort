@@ -1,6 +1,7 @@
 #include "sleep_sort.h"
 
 int main() {
-    test_normal();
+    test_sleep_sort();
+
     return 0;
 }

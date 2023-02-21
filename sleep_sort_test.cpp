@@ -1,4 +1,5 @@
 #include "sleep_sort.h"
+#include "util.h"
 #include <mutex>
 #include <string>
 #include <thread>
@@ -8,15 +9,26 @@ struct Unit {
     std::vector<int> want;
     std::vector<int> sample;
 };
+
+static void test_normal();
+static void test_negative();
 static void test_sort(Unit &u);
+
 std::mutex print_mtx;
 
-void test_normal() {
+void test_sleep_sort() {
+    test_normal();
+    test_negative();
+}
+
+static void test_normal() {
     std::vector<Unit> tests = {
         {"zero element"s,      {},              {}             },
         {"one element"s,       {1},             {1}            },
         {"five elements"s,     {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
-        {"duplicated values"s, {1, 1, 2, 2},    {2, 1, 1, 2}   }
+        {"duplicated values"s, {1, 1, 2, 2},    {2, 1, 1, 2}   },
+        {"zero 1"s,            {0},             {0}            },
+        {"zero 2"s,            {0, 1, 2, 3, 4}, {4, 3, 1, 2, 0}},
     };
 
     std::vector<std::thread> ths;
@@ -29,6 +41,19 @@ void test_normal() {
             t.join();
         }
     }
+}
+
+static void test_negative() {
+    auto t = Unit{"negative"s, {}, {-1}};
+
+    int checkPoint = 0;
+    try {
+        test_sort(t);
+        checkPoint |= 0b1;
+    } catch (std::range_error &e) {
+        checkPoint |= 0b01;
+    }
+    expect(0b01, checkPoint, "");
 }
 
 static void test_sort(Unit &u) {
@@ -46,8 +71,8 @@ static void test_sort(Unit &u) {
 
     if (u.want != u.sample) {
         std::lock_guard<std::mutex> lock(print_mtx);
-        std::cout << u.msg << ": want"s << pp(u.want)
-                  << ", got"s << pp(u.sample) << std::endl;
-        exit(1);
+        std::cout << u.msg << ": want"s << pp(u.want) << ", but got"s << pp(u.sample)
+                  << std::endl;
+        std::exit(1);
     }
 }
