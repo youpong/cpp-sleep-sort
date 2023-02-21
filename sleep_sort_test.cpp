@@ -4,7 +4,7 @@
 #include <string>
 #include <thread>
 
-struct Test {
+struct TestSet {
     std::string msg;
     std::vector<int> want;
     std::vector<int> sample;
@@ -12,7 +12,7 @@ struct Test {
 
 static void test_normal();
 static void test_negative();
-static void test_sort(Test &u);
+static void test_sort(TestSet &);
 
 std::mutex print_mtx;
 
@@ -22,7 +22,7 @@ void test_sleep_sort() {
 }
 
 static void test_normal() {
-    std::vector<Test> tests = {
+    std::vector<TestSet> tests = {
         {"zero element"s,      {},              {}             },
         {"one element"s,       {1},             {1}            },
         {"five elements"s,     {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
@@ -43,7 +43,7 @@ static void test_normal() {
 }
 
 static void test_negative() {
-    auto t = Test{"negative"s, {}, {-1}};
+    auto t = TestSet{"negative"s, {}, {-1}};
 
     int checkPoint = 0;
     try {
@@ -55,7 +55,7 @@ static void test_negative() {
     expect(0b01, checkPoint, "");
 }
 
-static void test_sort(Test &u) {
+static void test_sort(TestSet &t) {
     auto pp = [](std::vector<int> v) {
         auto result = "["s;
         auto delim = ""s;
@@ -66,11 +66,11 @@ static void test_sort(Test &u) {
         return result + "]"s;
     };
 
-    sleep_sort(u.sample);
+    sleep_sort(t.sample);
 
-    if (u.want != u.sample) {
+    if (t.want != t.sample) {
         std::lock_guard<std::mutex> lock(print_mtx);
-        std::cout << u.msg << ": want"s << pp(u.want) << ", but got"s << pp(u.sample)
+        std::cout << t.msg << ": want"s << pp(t.want) << ", but got"s << pp(t.sample)
                   << std::endl;
         std::exit(1);
     }
