@@ -7,7 +7,7 @@ add_executable(sleep_sort main.cpp sleep_sort.cpp sleep_sort_test.cpp)
 target_compile_features(sleep_sort PRIVATE cxx_std_20)
 
 target_compile_options(sleep_sort PRIVATE
-  "$<BUILD_INTERFACE:-Wall;-Wextra;-Wpedantic>"
+  "-Wall;-Wextra;-Wpedantic"
 )
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
