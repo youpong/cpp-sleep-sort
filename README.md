@@ -2,13 +2,15 @@
 
 The C++20 implementation of Sleep Sort.
 
+If the vector contains a negative number, std::range_error is thrown.
+
 ## Prerequisites
 
 The following versions or newer required.
 
 * CMake 3.22
 * GNU Make-4.3
-* g++-11.3.0 or clang++-15.0.6
+* g++-11.3.0
 * clang-format-15.0.6
 
 ## Usage
