@@ -15,4 +15,3 @@ target_clangformat_setup(sleep_sort)
 
 enable_testing()
 add_test(NAME Check COMMAND sleep_sort)
-
