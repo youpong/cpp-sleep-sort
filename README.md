@@ -10,8 +10,10 @@ The following versions or newer required.
 
 * CMake 3.22
 * GNU Make-4.3
-* g++-11.3.0
+* C++20 compliant compiler: clang-15.0.6 or g++-11.3.0
 * clang-format-15.0.6
+* Doxygen-1.9.1
+* Graphviz-2.43.0
 
 ## Usage
 
@@ -46,8 +48,7 @@ $ docker run --rm -it -v $PWD:/sleep-sort -w /sleep-sort sleep-sort
 
 3. Set environment variables:
 ```bash
-$ export CC=clang-15
-$ export CXX=clang++-15
+$ source ./env
 ```
 
 ## References
