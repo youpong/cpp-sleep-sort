@@ -6,9 +6,9 @@
 
 struct TestCase {
     std::string name;
+    std::vector<int> expected;    
     /** a vector to sort */
     std::vector<int> v;
-    std::vector<int> expected;
 };
 
 static void test_normal();
