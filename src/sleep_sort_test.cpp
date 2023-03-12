@@ -2,19 +2,20 @@
 #include "sleep_sort.h"
 #include "util.h"
 #include <mutex>
-#include <string>
 #include <thread>
 
-struct TestSet {
-    std::string msg;
-    std::vector<int> want;
-    std::vector<int> sample;
+struct TestCase {
+    std::string name;
+    /** a vector to sort */
+    std::vector<int> v;
+    std::vector<int> expected;
 };
 
 static void test_normal();
 static void test_negative();
-static void test_sort(TestSet &);
+static void test_sort(TestCase &);
 
+/** for exclusive control of output */
 std::mutex print_mtx;
 
 void test_sleep_sort() {
@@ -23,7 +24,7 @@ void test_sleep_sort() {
 }
 
 static void test_normal() {
-    std::vector<TestSet> tests = {
+    std::vector<TestCase> cases = {
         {"zero element"s,      {},              {}             },
         {"one element"s,       {1},             {1}            },
         {"five elements"s,     {1, 2, 3, 4, 5}, {5, 4, 2, 3, 1}},
@@ -32,8 +33,8 @@ static void test_normal() {
     };
 
     std::vector<std::thread> ths;
-    for (auto &t : tests) {
-        ths.push_back(std::thread{[&] { test_sort(t); }});
+    for (auto &c : cases) {
+        ths.push_back(std::thread{[&] { test_sort(c); }});
     }
 
     for (auto &t : ths) {
@@ -44,11 +45,11 @@ static void test_normal() {
 }
 
 static void test_negative() {
-    auto t = TestSet{"negative"s, {}, {-1}};
+    auto c = TestCase{"negative"s, {}, {-1}};
 
     int checkPoint = 0;
     try {
-        test_sort(t);
+        test_sort(c);
         checkPoint |= 0b1;
     } catch (std::range_error &e) {
         checkPoint |= 0b01;
@@ -56,7 +57,7 @@ static void test_negative() {
     expect(0b01, checkPoint, "");
 }
 
-static void test_sort(TestSet &t) {
+static void test_sort(TestCase &c) {
     auto pp = [](std::vector<int> v) {
         auto result = "["s;
         auto delim = ""s;
@@ -67,11 +68,11 @@ static void test_sort(TestSet &t) {
         return result + "]"s;
     };
 
-    sleep_sort(t.sample);
+    sleep_sort(c.v);
 
-    if (t.want != t.sample) {
+    if (c.expected != c.v) {
         std::lock_guard<std::mutex> lock(print_mtx);
-        std::cout << t.msg << ": want"s << pp(t.want) << ", but got"s << pp(t.sample)
+        std::cout << c.name << ": want"s << pp(c.expected) << ", but got"s << pp(c.v)
                   << std::endl;
         std::exit(1);
     }

@@ -3,9 +3,22 @@
 #include <chrono>
 #include <mutex>
 #include <stdexcept>
-#include <string>
 #include <thread>
 
+/**
+ * Make an effort to sort a vector of int in ascending order. 
+ *
+ * The success rate is exacerbated by the following conditions:
+ * 1. The greater the distance between the postions of the two elements
+ * 2. The smaller the difference between two elements
+ * 3. The higher the system load.
+ *
+ * Time to process:
+ * Max value(in seconds)
+ *
+ * @param v the vector of int to sort.
+ * @throws std::range_error a vector contains a negative number.
+ */
 void sleep_sort(std::vector<int> &v) {
     std::vector<std::thread> ths;
     std::mutex mtx;
