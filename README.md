@@ -7,9 +7,15 @@ The C++20 implementation of Sleep Sort using std::thread.
 
 The following versions or newer required.
 
+For Windows:
+* MS Visual Studio 2022
+
+For Ubuntu, MacOS:
 * CMake 3.22
 * GNU Make-4.3
-* C++20 compliant compiler: clang-15.0.6, g++-11.3.0 or MS Visual Studio 2022
+* C++20 compliant compiler: clang-15.0.6 or g++-11.3.0
+
+Optional:
 * clang-format-15.0.6
 * Doxygen-1.9.1
 * Graphviz-2.43.0
