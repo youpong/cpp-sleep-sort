@@ -53,6 +53,7 @@ static void test_negative() {
         checkPoint |= 0b1;
     } catch (const std::range_error& e) {
         checkPoint |= 0b01;
+        std::cerr << e.what();
     }
     expect(0b01, checkPoint, "");
 }
