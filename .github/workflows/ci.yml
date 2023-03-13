@@ -9,15 +9,12 @@ jobs:
   ci:
     strategy:
       matrix:
-#        os: [macos-latest, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - name: Install dependencies
-      run:  sudo apt-get install doxygen graphviz -y
     - name: Generate the build system
-      run:  cmake -Bbuild
+      run:  cmake -DBUILD_DOC=OFF -Bbuild
     - name: Build and Test
       run:  |
             cd build
