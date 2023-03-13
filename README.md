@@ -21,12 +21,12 @@ The following versions or newer required.
 $ cmake -Bbuild
 ```
 optoins(default):
-* BUILD\_DOC(ON): Build API Documents
-* ENABLE\_FORMAT(ON): Enable Format sources
+* BUILD\_DOC(OFF): Build API Documents
+* ENABLE\_FORMAT(OFF): Enable Format sources
 
 Example:
 ```
-$ cmake -DBUILD_DOC=OFF -DENABLE_FORMAT=ON -Bbuild
+$ cmake -DBUILD_DOC=ON -DENABLE_FORMAT=ON -Bbuild
 ```
 
 2. build and test:

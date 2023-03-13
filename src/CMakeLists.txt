@@ -12,7 +12,7 @@ target_compile_options(compiler_flags INTERFACE
 add_executable(sleep_sort main.cpp sleep_sort.cpp sleep_sort_test.cpp)
 target_link_libraries(sleep_sort PUBLIC compiler_flags)
 
-option(ENABLE_FORMAT "Enable format" ON)
+option(ENABLE_FORMAT "Enable format" OFF)
 if (ENABLE_FORMAT)
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
     include(ClangFormat)

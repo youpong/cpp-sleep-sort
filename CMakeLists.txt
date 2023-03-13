@@ -8,7 +8,7 @@ add_subdirectory(src)
 enable_testing()
 
 
-option(BUILD_DOC "Build documentation" ON)
+option(BUILD_DOC "Build documentation" OFF)
 if (BUILD_DOC)
     find_package(Doxygen REQUIRED)
     if (DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
