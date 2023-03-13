@@ -51,7 +51,7 @@ static void test_negative() {
     try {
         test_sort(c);
         checkPoint |= 0b1;
-    } catch (std::range_error &e) {
+    } catch (const std::range_error& e) {
         checkPoint |= 0b01;
     }
     expect(0b01, checkPoint, "");
