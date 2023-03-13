@@ -1,4 +1,5 @@
 # README.md
+[![ci](https://github.com/youpong/cpp-sleep-sort/actions/workflows/ci.yml/badge.svg)](https://github.com/youpong/cpp-sleep-sort/actions/workflows/ci.yml)
 
 The C++20 implementation of Sleep Sort using std::thread.
 
