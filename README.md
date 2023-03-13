@@ -8,7 +8,7 @@ The following versions or newer required.
 
 * CMake 3.22
 * GNU Make-4.3
-* C++20 compliant compiler: clang-15.0.6 or g++-11.3.0
+* C++20 compliant compiler: clang-15.0.6, g++-11.3.0 or MS Visual Studio 2022
 * clang-format-15.0.6
 * Doxygen-1.9.1
 * Graphviz-2.43.0
@@ -16,18 +16,33 @@ The following versions or newer required.
 ## Usage
 
 1. Generate the build system and navigate to the directory:
+
 ```bash
 $ cmake -Bbuild
-$ cd build
+```
+optoins(default):
+* BUILD\_DOC(ON): Build API Documents
+* ENABLE\_FORMAT(ON): Enable Format sources
+
+Example:
+```
+$ cmake -DBUILD_DOC=OFF -DENABLE_FORMAT=ON -Bbuild
 ```
 
 2. build and test:
+
+When `BUILD_DOC` is ON, API document is also generated.
+
 ```bash
+$ cd build
 $ cmake --build . -j
-$ ctest
+$ ctest -C Debug
 ```
 
 3. Format sources anytime using `clangformat` target:
+
+requires `ENABLE_FORMAT` is `ON`.
+
 ```bash
 $ cmake --build . --target clangformat
 ```
