@@ -1,8 +1,6 @@
 # README.md
 
-The C++20 implementation of Sleep Sort.
-
-If the vector contains a negative number, std::range_error is thrown.
+The C++20 implementation of Sleep Sort using std::thread.
 
 ## Prerequisites
 
@@ -44,11 +42,6 @@ $ docker build -t sleep-sort .
 2. Run Docker container:
 ```bash
 $ docker run --rm -it -v $PWD:/sleep-sort -w /sleep-sort sleep-sort
-```
-
-3. Set environment variables:
-```bash
-$ source ./env
 ```
 
 ## References

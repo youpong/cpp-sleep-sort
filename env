@@ -1,2 +1,0 @@
-export CC=clang-15
-export CXX=clang++-15
