@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Generate the build system
-      run:  cmake -DBUILD_DOC=OFF -Bbuild
+      run:  cmake -DBUILD_DOC=OFF -DENABLE_FORMAT=OFF -Bbuild
     - name: Build and Test
       run:  |
             cd build

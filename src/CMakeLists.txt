@@ -6,9 +6,12 @@ target_compile_options(sleep_sort PRIVATE
   "-Wall;-Wextra;-Wpedantic"
 )
 
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
-include(ClangFormat)
-target_clangformat_setup(sleep_sort)
+option(ENABLE_FORMAT "Enable format" ON)
+if (ENABLE_FORMAT)
+    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+    include(ClangFormat)
+    target_clangformat_setup(sleep_sort)
+endif()
 
 enable_testing()
 add_test(NAME Check COMMAND sleep_sort)

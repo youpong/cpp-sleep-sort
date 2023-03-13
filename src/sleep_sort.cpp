@@ -6,7 +6,7 @@
 #include <thread>
 
 /**
- * Make an effort to sort a vector of int in ascending order. 
+ * Make an effort to sort a vector of int in ascending order.
  *
  * The success rate is exacerbated by the following conditions:
  * 1. The greater the distance between the postions of the two elements
